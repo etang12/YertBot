@@ -1,0 +1,29 @@
+{
+    "env": {
+        "node": true,
+        "commonjs": true,
+        "es2021": true,
+        "es6": true
+    },
+    "extends": "eslint:recommended",
+    "parserOptions": {
+        "ecmaVersion": "latest"
+    },
+    "rules": {
+        "semi": ["error", "always"],
+        "arrow-body-style": ["error", "always"],
+        "curly": "error",
+        "max-nested-callbacks": ["error", {"max": 4}],
+        "dot-location": ["error", "property"],
+        "keyword-spacing": "error",
+        "object-curly-spacing": ["error", "always"],
+        "prefer-const": "error",
+        "no-trailing-spaces": ["error", {"ignoreComments": true}],
+        "no-empty-function": "error",
+        "brace-style": "error",
+        "arrow-spacing": "error",
+        "spaced-comment": "error",
+        "no-var": "error",
+        "yoda": "error"
+    }
+}
