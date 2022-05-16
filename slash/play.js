@@ -69,7 +69,7 @@ module.exports = {
         const url = interaction.options.getString("url");
         // search for URL input (song) by user on YouTube
         const result = await client.player.search(url, {
-          requestBy: interaction.user,
+          requestedBy: interaction.user,
           searchEngine: QueryType.YOUTUBE_VIDEO,
         });
         // result.tracks is an array that stores all videos found by that url
@@ -90,7 +90,7 @@ module.exports = {
         const url = interaction.options.getString("url");
         // search for URL input (playlist) by user on YouTube
         const result = await client.player.search(url, {
-          requestBy: interaction.user,
+          requestedBy: interaction.user,
           searchEngine: QueryType.YOUTUBE_PLAYLIST,
         });
         // result.tracks is an array that stores all videos found by that url
@@ -109,7 +109,7 @@ module.exports = {
         const url = interaction.options.getString("searchterms");
         // search for URL input (song) by user on any platform (YouTube, Spotify, etc.)
         const result = await client.player.search(url, {
-          requestBy: interaction.user,
+          requestedBy: interaction.user,
           searchEngine: QueryType.AUTO,
         });
         // result.tracks is an array that stores all videos found by that url
