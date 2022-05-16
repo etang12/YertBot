@@ -42,9 +42,10 @@ const slashFiles = fs.readdirSync("./slash");
 // });
 console.log(slashFiles);
 for (const file of slashFiles) {
+  // importing file into index
   const slashcmd = require(`./slash/${file}`);
   // Set a new item in slashcommands Collection (Map object)
-  // Key: command name, Value: command
+  // Key: command name, Value: imported command file exports
   client.slashcommands.set(slashcmd.data.name, slashcmd);
   if (LOAD_SLASH) {
     console.log('hello');
@@ -59,9 +60,10 @@ if (LOAD_SLASH) {
     version: "9",
   }).setToken(TOKEN);
   console.log("Deploying slash commands");
-  // generate URL with CLIENT_ID and GUILD_ID
-  // deploys slash commands to the bot
+  // generate URL with CLIENT_ID (bot) and GUILD_ID (server)
   rest
+    // deploys slash commands to the bot on a server
+    // Routes provides discord API endpoint to deploy slash commands
     .put(Routes.applicationGuildCommands(CLIENT_ID, GUILD_ID), {
       body: commands,
     })
@@ -82,8 +84,9 @@ if (LOAD_SLASH) {
   // interactionCreate (event listener) listening for when user inputs slash command (Ex. /play song)
   client.on("interactionCreate", (interaction) => {
     console.log(interaction);
+    // parses the slash command inputted by user
     async function handleCommand() {
-      // checks that the interaction must be a slash command
+      // checks that the interaction must be a valid slash command
       if (!interaction.isCommand()) {
         return;
       }

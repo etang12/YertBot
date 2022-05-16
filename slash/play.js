@@ -3,13 +3,18 @@ const { MessageEmbed } = require("discord.js");
 const { QueryType } = require("discord-player");
 
 module.exports = {
+  // build slash commands without having to manually construct objects
+  // build SlashCommandBuilder object
   data: new SlashCommandBuilder()
+    // create command called play (Ex. /play)
     .setName("play")
     .setDescription("Loads songs from YouTube")
+    // create subcommand (Ex. /play song)
     .addSubcommand((subcommand) => {
       return subcommand
         .setName("song")
         .setDescription("Loads a single song from url")
+        // prompts user to input a URL to play (Ex. /play song {url})
         .addStringOption((option) => {
           return option
             .setName("url")
@@ -17,6 +22,7 @@ module.exports = {
             .setRequired(true);
         });
     })
+    // create subcommand (Ex. /play playlist)
     .addSubcommand((subcommand) => {
       return subcommand
         .setName("playlist")
@@ -28,6 +34,7 @@ module.exports = {
             .setRequired(true);
         });
     })
+    // create subcommand (Ex. /play search)
     .addSubcommand((subcommand) => {
       return subcommand
         .setName("search")
@@ -48,7 +55,7 @@ module.exports = {
         );
       }
 
-      // create queue for bot
+      // create queue for bot on the server
       const queue = await client.player.createQueue(interaction.guild);
       // if queue not connected to channel then connect bot to voice channel that member is in
       if (!queue.connection) {
@@ -72,6 +79,7 @@ module.exports = {
 
         const song = result.tracks[0];
         await queue.addTrack(song);
+        // creates embed message to send to discord channel
         embed
           .setDescription(
             `**[${song.title}](${song.url})** has been added to the queue`
@@ -122,7 +130,7 @@ module.exports = {
       if (!queue.playing) {
         await queue.play();
       }
-      // send embed messages back to user
+      // send embed messages back to discord channel
       await interaction.editReply({
         embeds: [embed],
       });
