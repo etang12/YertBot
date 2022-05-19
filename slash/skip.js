@@ -15,6 +15,18 @@ module.exports = {
           "No songs currently in queue to skip!"
         );
       }
+
+      const currSong = queue.current;
+      queue.skip();
+
+      const embed = new MessageEmbed();
+      embed
+        .setDescription(`${currSong.title} has been skipped!`)
+        .setThumbnail(currSong.thumbnail);
+
+      interaction.editReply({
+        embeds: [embed],
+      });
     } catch (err) {
       throw new Error(err);
     }

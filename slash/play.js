@@ -71,10 +71,10 @@ module.exports = {
 
         case "song": {
           const url = interaction.options.getString("url");
-          // search for URL input (song) by user on YouTube
+          // search for URL input (song) by user on YouTube/Spotify/Soundcloud
           const result = await client.player.search(url, {
             requestedBy: interaction.user,
-            searchEngine: QueryType.YOUTUBE_VIDEO,
+            searchEngine: QueryType.AUTO,
           });
           // result.tracks is an array that stores all videos found by that url
           if (result.tracks.length === 0) {
