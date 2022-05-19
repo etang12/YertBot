@@ -10,16 +10,16 @@ module.exports = {
     try {
       const queue = client.player.getQueue(interaction.guild);
 
-      if (!queue || !queue.playing) {
+      if (!queue) {
         return await interaction.editReply("No songs currently playing");
       }
 
     const currSong = queue.current;
-    queue.stop();
+    queue.setPaused(true);
 
     const embed = new MessageEmbed();
 
-    embed.setDescription(`**[${currSong.title}](${currSong.url})** has been paused!`).setThumbnail(currSong.thumbnail);
+    embed.setDescription(`**[${currSong.title}](${currSong.url})** has been paused! Use /resume to resume playing.`).setThumbnail(currSong.thumbnail);
 
     return await interaction.editReply({
         embeds: [embed]
