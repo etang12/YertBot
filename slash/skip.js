@@ -21,10 +21,10 @@ module.exports = {
 
       const embed = new MessageEmbed();
       embed
-        .setDescription(`${currSong.title} has been skipped!`)
+        .setDescription(`**[${currSong.title}](${currSong.url})** has been skipped!`)
         .setThumbnail(currSong.thumbnail);
 
-      interaction.editReply({
+      await interaction.editReply({
         embeds: [embed],
       });
     } catch (err) {

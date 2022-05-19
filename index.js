@@ -48,7 +48,6 @@ for (const file of slashFiles) {
   // Key: command name, Value: imported command file exports
   client.slashcommands.set(slashcmd.data.name, slashcmd);
   if (LOAD_SLASH) {
-    console.log('hello');
     commands.push(slashcmd.data.toJSON());
   }
 }
@@ -93,7 +92,7 @@ if (LOAD_SLASH) {
 
       const slashcmd = client.slashcommands.get(interaction.commandName);
       if (!slashcmd) {
-        interaction.reply("Not a valid slash command");
+        await interaction.reply("Not a valid slash command");
       }
       // Discord defaults to 3 seconds for bot response, if no response by 3 seconds then response is cancelled
       // gives bot more time to respond to slash commands and sends message (Thinking...) in chat before replying
